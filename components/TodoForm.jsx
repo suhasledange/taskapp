@@ -40,10 +40,10 @@ const TodoForm = ({ data }) => {
   useEffect(() => {
     if (formDialog) {
       setIsVisible(true);
-      setTimeout(() => setIsAnimating(true), 300); 
+      setTimeout(() => setIsAnimating(true), 200); 
     } else {
       setIsAnimating(false);
-      setTimeout(() => setIsVisible(false), 300);
+      setTimeout(() => setIsVisible(false), 200);
     }
   }, [formDialog]);
 
@@ -55,7 +55,7 @@ const TodoForm = ({ data }) => {
     isVisible && (
       <div className={`fixed inset-0 z-30 overflow-y-auto overflow-x-hidden`}>
         <div
-          className={`fixed inset-0 w-full opacity-60 transform h-full bg-black `}
+          className={`fixed inset-0 w-full ${isAnimating ? "opacity-60":"opacity-0"} duration-200  transform h-full bg-black `}
           onClick={() => setFormDialog(false)}
         ></div>
         <div className="flex flex-col items-end min-h-screen">
