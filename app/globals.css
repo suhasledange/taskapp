@@ -7,3 +7,29 @@
     background-image: linear-gradient(white, rgb(108, 106, 190));
 }
 
+select{
+    appearance: none;
+}
+
+#dropdown {
+	appearance: none;
+	padding: 5px;
+	background-color: #4834d4;
+	color: white;
+	border: none;
+	font-family: inherit;
+	outline: none;
+}
+
+input[type='date']::-webkit-calendar-picker-indicator {
+    background: transparent;
+    bottom: 0;
+    color: transparent;
+	height: 100px;
+    cursor: pointer;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: auto;
+}

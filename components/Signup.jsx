@@ -16,6 +16,7 @@ const Signup = ({ setDialog }) => {
   const router = useRouter();
   const onSubmit = async (data) => {
     console.log(data);
+    router.push('/dashboard')
   };
 
   return (

@@ -6,6 +6,7 @@ const TodoContext = createContext()
 export const TodoProvider = ({ children }) => {
 
   const [data,setData] = useState([]);
+  const [formDialog,setFormDialog] = useState(false);
   const [loading,setLoading] = useState(true);
     
     const fetchTodos = async()=>{
@@ -84,7 +85,7 @@ export const TodoProvider = ({ children }) => {
   
    
     return (
-        <TodoContext.Provider value={{ loading,fetchTodos,addTodos,updateTodos,deleteTodo,data,setData }}>
+        <TodoContext.Provider value={{ formDialog,setFormDialog,loading,fetchTodos,addTodos,updateTodos,deleteTodo,data,setData }}>
             {children}
         </TodoContext.Provider>
     );

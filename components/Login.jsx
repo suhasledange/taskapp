@@ -17,6 +17,7 @@ const Login = ({ setDialog }) => {
 
   const onSubmit = async (data) => {
     console.log(data);
+    router.push('/dashboard')
   };
 
   return (
@@ -59,7 +60,7 @@ const Login = ({ setDialog }) => {
           </div>
         </div>
 
-        
+
           <button
             type="submit"
             className="text-lg gap-3 flex items-center justify-center bg-btn text-white p-2 rounded-md w-full hover:bg-btn/[0.9] transition duration-150"
