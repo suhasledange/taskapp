@@ -31,7 +31,7 @@ const Sidebar = () => {
 
  
   return (
-    <div className="bg-white h-screen flex flex-col justify-between overflow-hidden">
+    <div className="bg-white h-screen border flex flex-col justify-between overflow-hidden">
         <div className='flex flex-col px-3 mt-6 w-full'>
             
         <div className='flex flex-col '>

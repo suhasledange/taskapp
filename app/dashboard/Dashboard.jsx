@@ -12,7 +12,7 @@ const Dashboard = ({children}) => {
             <Sidebar/>
     </div>
     
-    <div className="w-5/6 h-screen overflow-hidden bg-gray-100/60">{children}</div>
+    <div className="w-5/6 h-screen overflow-hidden bg-gray-100">{children}</div>
 
     <TodoForm/>
 

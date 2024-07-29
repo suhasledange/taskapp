@@ -7,6 +7,7 @@ import { MdAddCircle } from 'react-icons/md';
 import { FiCalendar } from "react-icons/fi";
 import { BsStars } from "react-icons/bs";
 import { CiFilter } from "react-icons/ci";
+import Todos from './Todos';
 const TodoBlock = () => {
 
     const ButtonOperations = [
@@ -25,16 +26,16 @@ const TodoBlock = () => {
 
   return (
     <div className='py-1'>
-      <div className='flex items-center justify-between'>
-        <div className='flex items-center gap-1 bg-white p-2'>
+      <div className='flex flex-wrap items-center justify-between gap-3 mb-3'>
+        <div className='flex lg:w-auto w-full items-center justify-between gap-1 bg-white p-2'>
             <input type='text' placeholder='Search'/>
             <CiSearch className='text-lg'/>
         </div>
-        <div className='text-md flex items-center gap-8 text-gray-700'>
+        <div className='text-md flex flex-wrap items-center text-gray-700 gap-3'>
 
            {
             ButtonOperations.map(btn => (
-                <button key={btn.id} onClick={()=>handleBtn(btn.value)} className='flex items-center gap-3'>{btn.title} {btn.icn} </button>
+                <button key={btn.id} onClick={()=>handleBtn(btn.value)} className='flex mr-8 items-center gap-3'>{btn.title} {btn.icn} </button>
 
             ))
            }
@@ -42,10 +43,19 @@ const TodoBlock = () => {
             <button onClick={()=>setFormDialog(true)} className='flex items-center justify-center bg-purple-900 text-white font-normal text-md rounded-md py-1 px-2 gap-2'>Create new <MdAddCircle/></button>
 
         </div>
+
+      </div>
+
+      <div>
+
+            <Todos/>
+
       </div>
 
 
-    </div>
+
+      </div>
+
   )
 }
 

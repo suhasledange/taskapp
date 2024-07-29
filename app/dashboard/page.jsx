@@ -4,7 +4,7 @@ import React from 'react'
 
 const MainBlock = () => {
   return (
-    <div className='p-6 '>
+    <div className='p-5 '>
             <Greeting/>
             <TodoBlock/>
     </div>
