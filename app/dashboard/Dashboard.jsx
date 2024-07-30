@@ -1,6 +1,6 @@
 'use client'
+import TodoForm from '@/components/Forms/TodoForm';
 import Sidebar from '@/components/Sidebar';
-import TodoForm from '@/components/TodoForm';
 import React, { useState } from 'react'
 
 const Dashboard = ({children}) => {
@@ -12,7 +12,7 @@ const Dashboard = ({children}) => {
             <Sidebar/>
     </div>
     
-    <div className="w-5/6 h-screen overflow-hidden bg-gray-100">{children}</div>
+    <div className="w-5/6 h-screen overflow-auto bg-gray-100">{children}</div>
 
     <TodoForm/>
 

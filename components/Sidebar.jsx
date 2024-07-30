@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { RiHome2Line } from "react-icons/ri";
 import { IoAnalyticsOutline } from "react-icons/io5";
 import { PiUsers } from "react-icons/pi";
@@ -17,6 +17,7 @@ import { useTodoContext } from '@/context/TodoProvider';
 const Sidebar = () => {
 
     const pathname = usePathname()
+    const router = useRouter();
 
     const {formDialog,setFormDialog} = useTodoContext()
 
@@ -24,11 +25,14 @@ const Sidebar = () => {
 
         {id:1,text:'Home',link:"/dashboard",logo:<RiHome2Line/>},
         {id:2,text:'Boards',link:"/dashboard/boards",logo:<MdOutlineAnalytics/>},
-        {id:4,text:'Settings',link:"/dashboard/settings",logo:<CiSettings/>},
-        {id:5,text:'Teams',link:"/dashboard/teams",logo:<PiUsers/>},
-        {id:6,text:'Analytics',link:"/dashboard/analytics",logo:<IoAnalyticsOutline/>},
+        {id:3,text:'Settings',link:"/dashboard/settings",logo:<CiSettings/>},
+        {id:4,text:'Teams',link:"/dashboard/teams",logo:<PiUsers/>},
+        {id:5,text:'Analytics',link:"/dashboard/analytics",logo:<IoAnalyticsOutline/>},
     ]
 
+    const handleLogout = async()=>{
+        router.replace('/')
+    }
  
   return (
     <div className="bg-white h-screen border flex flex-col justify-between overflow-hidden">
@@ -38,7 +42,7 @@ const Sidebar = () => {
 
             <div className='flex items-center gap-2 md:flex-row flex-col' >
                     <div className=' w-10 h-10 cursor-pointer'>
-                        <Image className='w-full object-contain h-full' src="/BassTown.png" width={500} height={500}/>
+                        <Image alt="logouser" className='w-full object-contain h-full' src="/BassTown.png" width={500} height={500}/>
                     </div>
                     <h1 className='font-semibold tracking-wider text-lg'>Joe Gardner</h1>
             </div>
@@ -49,7 +53,7 @@ const Sidebar = () => {
                     <button className='relative'><LuLoader/> <div className='absolute rounded-full w-3  h-3 bg-yellow-500 -top-1 -right-1'></div> </button>
                     <button className=''><MdKeyboardDoubleArrowRight/></button>
                 </div>
-                <button className='bg-gray-100 px-3 py-1 md:w-auto w-full active:scale-95 font-medium text-gray-600'>Logout</button>
+                <button onClick={handleLogout} className='bg-gray-100 px-3 py-1 md:w-auto w-full active:scale-95 font-medium text-gray-600'>Logout</button>
             </div>
         </div>
 

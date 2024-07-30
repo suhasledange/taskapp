@@ -3,6 +3,8 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { IoMdEye } from "react-icons/io";
 import { IoMdEyeOff } from "react-icons/io";
+import Loader from "../Loader";
+import axios from "axios";
 const Login = ({ setDialog }) => {
   const {
     register,
@@ -14,10 +16,22 @@ const Login = ({ setDialog }) => {
   const router = useRouter();
 
   const[eye,setEye] = useState('password');
+  const [loading,setLoading] = useState(false)
 
   const onSubmit = async (data) => {
-    console.log(data);
-    router.push('/dashboard')
+    
+    
+  try {
+    setLoading(true)
+
+    const res = await axios.post("/api/login",data)
+    
+    if(res) router.replace('/dashboard')
+
+  } catch (error) {
+    console.log("Login Failed",error)
+  }
+
   };
 
   return (
@@ -65,7 +79,7 @@ const Login = ({ setDialog }) => {
             type="submit"
             className="text-lg gap-3 flex items-center justify-center bg-btn text-white p-2 rounded-md w-full hover:bg-btn/[0.9] transition duration-150"
           >
-            Login
+            Login {loading && <Loader/>}
           </button>
         
       </div>

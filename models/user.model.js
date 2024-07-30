@@ -11,7 +11,6 @@ const userSchema = new Schema({
         unique: true,
         index:true,
         lowercase: true,
-        trim: true,
     },
     password: {
         type: String,
@@ -22,5 +21,5 @@ const userSchema = new Schema({
 }, { timestamps: true });
 
 
-const User = mongoose.model("User", userSchema);
+const User = mongoose.models.users || mongoose.model("users", userSchema);
 export default User;

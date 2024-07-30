@@ -1,8 +1,10 @@
+'use client'
 import React, { useState } from "react";
-import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { IoMdEye } from "react-icons/io";
 import { IoMdEyeOff } from "react-icons/io";
+import axios from "axios";
+import Loader from "../Loader";
 const Signup = ({ setDialog }) => {
   const {
     register,
@@ -13,10 +15,26 @@ const Signup = ({ setDialog }) => {
 
   const [eye,setEye] = useState('password')
 
-  const router = useRouter();
+  const [loading,setLoading] = useState(false)
+
   const onSubmit = async (data) => {
-    console.log(data);
-    router.push('/dashboard')
+
+    try {
+      setLoading(true)
+      const res = await axios.post("/api/signup",data)
+      if(res.status === 200){
+        setLoading(false)
+          setDialog('login')
+      }
+
+    } catch (error) {
+        console.log("Signup failed,",error)
+        if(error.response.status === 400){
+          alert(error.response.data.error)
+        }
+        setLoading(false)
+    }
+
   };
 
   return (
@@ -78,7 +96,7 @@ const Signup = ({ setDialog }) => {
             type="submit"
             className="text-lg gap-3 flex items-center justify-center bg-btn text-white p-2 rounded-md w-full hover:bg-btn/[0.9] transition duration-150"
           >
-            Sign Up
+            Sign Up {loading && <Loader/>} 
           </button>
         
       </div>

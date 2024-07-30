@@ -12,7 +12,7 @@ const Greeting = () => {
         <div className='flex items-center justify-center gap-3 flex-wrap'>
             {
                 greetingData.map(value => (
-                    <GreetingCard img={value.img} description={value.description} title={value.title}/>
+                    <GreetingCard key={value.id} img={value.img} description={value.description} title={value.title}/>
                 ))
             }
 

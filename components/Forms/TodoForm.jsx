@@ -9,7 +9,6 @@ import { LuLoader } from "react-icons/lu";
 import { MdLowPriority } from "react-icons/md";
 import { RiCalendarScheduleLine } from "react-icons/ri";
 import { LuPencil } from "react-icons/lu";
-import { IoMdAdd } from "react-icons/io";
 import { useTodoContext } from "@/context/TodoProvider";
 
 const TodoForm = ({ data }) => {

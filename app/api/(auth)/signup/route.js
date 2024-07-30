@@ -7,11 +7,8 @@ dbConnect()
 
 export async function POST(request){
     try {
-        const {username, email, password} = await request.json()
-
-        const user = await User.findOne({
-            $or:[{email},{username}]
-        })
+        const {fullname, email, password} = await request.json()
+        const user = await User.findOne({email})
 
         if(user){
             return NextResponse.json({error: "User already exists"}, {status: 400})
@@ -21,7 +18,7 @@ export async function POST(request){
         const hashedPassword = await bcrypt.hash(password, salt)
 
         const newUser = new User({
-            username,
+            fullname,
             email,
             password: hashedPassword
         })
@@ -36,7 +33,7 @@ export async function POST(request){
 
 
     } catch (error) {
-        return NextResponse.json({error: error.message}, {status: 500})
+        return NextResponse.json({error: error}, {status: 500})
 
     }
 }

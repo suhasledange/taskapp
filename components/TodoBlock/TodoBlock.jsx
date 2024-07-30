@@ -1,6 +1,6 @@
 'use client'
 import { useTodoContext } from '@/context/TodoProvider';
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { CiSearch, CiShare2 } from "react-icons/ci";
 import { MdAddCircle } from 'react-icons/md';
 
@@ -24,11 +24,15 @@ const TodoBlock = () => {
 
     const {formDialog,setFormDialog} = useTodoContext()
 
+    const {data} = useTodoContext()
+
+
+
   return (
     <div className='py-1'>
       <div className='flex flex-wrap items-center justify-between gap-3 mb-3'>
         <div className='flex lg:w-auto w-full items-center justify-between gap-1 bg-white p-2'>
-            <input type='text' placeholder='Search'/>
+            <input className=' outline-none' type='text' placeholder='Search'/>
             <CiSearch className='text-lg'/>
         </div>
         <div className='text-md flex flex-wrap items-center text-gray-700 gap-3'>
@@ -48,11 +52,9 @@ const TodoBlock = () => {
 
       <div>
 
-            <Todos/>
+          {/* <Todos todos={data}/> */}
 
       </div>
-
-
 
       </div>
 
