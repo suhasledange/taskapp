@@ -17,7 +17,7 @@ const todoSchema = new Schema({
     },
     priority: {
         type: String,
-        enum: ["Low", "Medium", "Urgent"],
+        enum: ["","Low", "Medium", "Urgent"],
     },
     deadline: {
         type: String,
@@ -29,5 +29,5 @@ const todoSchema = new Schema({
 }, { timestamps: true });
 
 
-const Todo = mongoose.model("Todo", todoSchema);
+const Todo = mongoose.models.todos || mongoose.model("todos", todoSchema);
 export default Todo;

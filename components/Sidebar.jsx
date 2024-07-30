@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation';
 import { RiHome2Line } from "react-icons/ri";
@@ -14,12 +14,12 @@ import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 import { MdAddCircle } from "react-icons/md";
 import { IoMdDownload } from "react-icons/io";
 import { useTodoContext } from '@/context/TodoProvider';
+import axios from 'axios';
 const Sidebar = () => {
 
     const pathname = usePathname()
     const router = useRouter();
-
-    const {formDialog,setFormDialog} = useTodoContext()
+    const {formDialog,setFormDialog,userData} = useTodoContext()
 
     const links = [
 
@@ -31,20 +31,33 @@ const Sidebar = () => {
     ]
 
     const handleLogout = async()=>{
-        router.replace('/')
+
+        try {
+            const res = await axios.get("/api/logout")
+            if(res){
+                router.replace('/')
+            }
+        } catch (error) {
+            console.log("failed to logout",error)
+        }
+
     }
+
+
+   
+
  
   return (
     <div className="bg-white h-screen border flex flex-col justify-between overflow-hidden">
-        <div className='flex flex-col px-3 mt-6 w-full'>
+        <div className='flex flex-col px-3 mt-4 w-full'>
             
         <div className='flex flex-col '>
 
             <div className='flex items-center gap-2 md:flex-row flex-col' >
                     <div className=' w-10 h-10 cursor-pointer'>
-                        <Image alt="logouser" className='w-full object-contain h-full' src="/BassTown.png" width={500} height={500}/>
+                        <Image alt="logouser" className='w-full object-contain h-full' src="/DefaultProfile.svg" width={500} height={500}/>
                     </div>
-                    <h1 className='font-semibold tracking-wider text-lg'>Joe Gardner</h1>
+                    <h1 className='font-semibold tracking-wider text-lg'>{userData?.fullname}</h1>
             </div>
 
             <div className='mt-4 flex gap-4 md:gap-0 md:flex-row flex-col justify-between items-center'>

@@ -19,17 +19,21 @@ const Login = ({ setDialog }) => {
   const [loading,setLoading] = useState(false)
 
   const onSubmit = async (data) => {
-    
-    
+  
   try {
     setLoading(true)
-
     const res = await axios.post("/api/login",data)
-    
-    if(res) router.replace('/dashboard')
+    if(res.status === 200){
+      router.replace("/dashboard")
+      setLoading(false)
+    } 
 
   } catch (error) {
     console.log("Login Failed",error)
+    if(error.response.status === 400){
+      alert("Invalid Crendentials")
+    }
+    setLoading(false)
   }
 
   };

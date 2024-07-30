@@ -10,8 +10,13 @@ import { MdLowPriority } from "react-icons/md";
 import { RiCalendarScheduleLine } from "react-icons/ri";
 import { LuPencil } from "react-icons/lu";
 import { useTodoContext } from "@/context/TodoProvider";
+import axios from "axios";
+import Loader from "../Loader";
 
 const TodoForm = ({ data }) => {
+
+  const {userData,fetchUserTodo} = useTodoContext()
+
   const {
     register,
     handleSubmit,
@@ -23,8 +28,9 @@ const TodoForm = ({ data }) => {
   const { formDialog, setFormDialog } = useTodoContext();
   const [isAnimating, setIsAnimating] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [loading,setLoading] = useState(false)
 
-  const setrowDataValues = () => {
+  const setDataValues = () => {
     setValue("title", data.title);
     setValue("deadline", new Date(data.deadline).toISOString().substring(0, 10));
     setValue("priority", data.priority);
@@ -33,7 +39,7 @@ const TodoForm = ({ data }) => {
   };
 
   useEffect(() => {
-    if (data) setrowDataValues();
+    if (data) setDataValues();
   }, [data, setValue]);
 
   useEffect(() => {
@@ -47,7 +53,24 @@ const TodoForm = ({ data }) => {
   }, [formDialog]);
 
   const onSubmit = async (data) => {
-    console.log(data);
+
+    if(userData && userData?._id)
+    try {
+      setLoading(true)
+      await axios.post("/api/todo", {
+        ...data,
+        owner: userData?._id,  
+      });
+      setLoading(false)
+      fetchUserTodo(userData._id);
+      setFormDialog(false);
+      reset()
+    } catch (error) {
+      console.error("Error creating todo:", error);
+      setLoading(false)
+      reset()
+    }
+      
   };
 
   return (
@@ -164,9 +187,9 @@ const TodoForm = ({ data }) => {
                 <div className="flex">
                   <button
                     type="submit"
-                    className="mr-4 border w-full border-slate-500 md:px-8 px-5 py-2 rounded-sm"
+                    className="mr-4 border w-full bg-btn hover:saturate-150 duration-150 border-slate-500 md:px-8 px-5 py-2 rounded-sm flex items-center justify-center gap-3 text-gray-200"
                   >
-                    Save
+                    Save {loading && <Loader/>}
                   </button>
                   {/* <button
                     type="submit"

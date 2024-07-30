@@ -4,41 +4,28 @@ import { BsFilterRight } from "react-icons/bs";
 import Card from "./Card";
 const Coloumn = ({ title, todo, id }) => {
 
-    console.log(todo)
-
   return (
-    <div className="column h-full">
+    <div className="flex-1 column h-full overflow-scroll">
       <div className="text-gray-700 flex items-center justify-between text-lg font-medium sticky top-0 bg-white pt-1 pb-3">
         <h1>{title}</h1>
         <BsFilterRight className="text-3xl" />
       </div>
-      <div>
-        <Droppable droppableId={id}>
-          {(provided, snapshot) => (
-            <div
-              ref={provided.innerRef}
-              {...provided.droppableProps}
-              isDraggingOver={snapshot.isDraggingOver}
-            >
+      <div className="">
                 {
                     todo.map(t=>(
                     <Card
-                    key={t.id}
-                    title="Implement User Authentication"
-                    description={t.todo}
-                    priority="Urgent"
-                    date="2024-08-15"
-                    id={124}
-                    index={t.userId}
+                    key={t._id}
+                    title={t.title}
+                    description={t.description}
+                    priority={t.priority}
+                    deadline={t.deadline}
+                    todoId={t._id}
+                    updatedAt={t.updatedAt}
                 />
             ))
 
             }
 
-              {provided.placeholder}
-            </div>
-          )}
-        </Droppable>
       </div>
     </div>
   );

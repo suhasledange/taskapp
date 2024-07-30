@@ -3,7 +3,6 @@ import { useTodoContext } from '@/context/TodoProvider';
 import React, { useEffect, useState } from 'react'
 import { CiSearch, CiShare2 } from "react-icons/ci";
 import { MdAddCircle } from 'react-icons/md';
-
 import { FiCalendar } from "react-icons/fi";
 import { BsStars } from "react-icons/bs";
 import { CiFilter } from "react-icons/ci";
@@ -18,21 +17,34 @@ const TodoBlock = () => {
     
     ]
 
+    const [searchTerm, setSearchTerm] = useState('');
+    const {formDialog,setFormDialog,todoData} = useTodoContext()
+
     const handleBtn = async (event)=>{
             console.log(event)
     }
 
-    const {formDialog,setFormDialog} = useTodoContext()
 
-    const {data} = useTodoContext()
-
+    const filteredTodos = todoData?.filter((todo) => {
+      const lowerCaseSearch = searchTerm.toLowerCase();
+      return (
+        todo.title.toLowerCase().includes(lowerCaseSearch) ||
+        todo.priority.toLowerCase().includes(lowerCaseSearch)
+      );
+    });
 
 
   return (
     <div className='py-1'>
       <div className='flex flex-wrap items-center justify-between gap-3 mb-3'>
         <div className='flex lg:w-auto w-full items-center justify-between gap-1 bg-white p-2'>
-            <input className=' outline-none' type='text' placeholder='Search'/>
+            <input
+             className=' outline-none'
+             type='text' 
+             placeholder='Search'
+             value={searchTerm}
+             onChange={(e)=>setSearchTerm(e.target.value)}
+             />
             <CiSearch className='text-lg'/>
         </div>
         <div className='text-md flex flex-wrap items-center text-gray-700 gap-3'>
@@ -52,7 +64,7 @@ const TodoBlock = () => {
 
       <div>
 
-          {/* <Todos todos={data}/> */}
+          <Todos todos={filteredTodos}/>
 
       </div>
 

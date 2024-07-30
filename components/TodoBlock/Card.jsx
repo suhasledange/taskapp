@@ -1,10 +1,18 @@
+'use client'
 import React from "react";
 import { Draggable } from "react-beautiful-dnd";
 import { IoTimeOutline } from "react-icons/io5";
 import { MdDelete } from "react-icons/md";
 import { LuPencil } from "react-icons/lu";
+import { findDays } from "@/lib/findDays";
+import axios from "axios";
+import { useTodoContext } from "@/context/TodoProvider";
 
-const Card = ({ title, description, priority, date, index,id }) => {
+const Card = ({ title, description, priority, deadline,status,todoId ,updatedAt}) => {
+
+
+  const {fetchUserTodo,userData} = useTodoContext()
+
   function bgcolorChange(props) {
     return props.isDragging
       ? "lightblue"
@@ -17,9 +25,28 @@ const Card = ({ title, description, priority, date, index,id }) => {
       : "#fffada";
   }
 
+  const handleDelete = async()=>{
+      
+    if(!confirm("Do you want to delete ?")) return 
+
+    try {
+        
+        const res = await axios.delete(`/api/todo/${todoId}`)
+        if(res.status === 200) fetchUserTodo(userData._id)
+        
+      } catch (error) {
+          console.log("Error deleting todo",error)
+      }
+
+  }
+  const handleEdit = async()=>{
+
+      
+
+  }
+
   return (
-    <Draggable draggableId={`${id}`} key={id} index={index}>
-      {(provided, snapshot) => (
+   
         <div className="bg-gray-100 rounded-md my-3 p-3">
           <h1 className="text-lg font-medium text-gray-700 mb-1">{title}</h1>
           <p className="text-gray-700 text-sm mb-2">{description}</p>
@@ -36,20 +63,18 @@ const Card = ({ title, description, priority, date, index,id }) => {
             {priority}
           </div>
           </div>
-          <p className="text-gray-800 text-md font-medium flex items-center justify-start text-md gap-1 mb-3"><IoTimeOutline className="text-2xl text-black"/> {date}</p>
+          <p className="text-gray-800 text-md font-medium flex items-center justify-start text-md gap-1 mb-3"><IoTimeOutline className="text-2xl text-black"/> {deadline}</p>
           <div className="text-sm flex items-center justify-between text-gray-500 font-medium">
             <p>
-              1 hr ago
+              {findDays(updatedAt)}
             </p>
             <div className="flex items-center justify-end gap-4">
-              <LuPencil className="text-xl cursor-pointer hover:text-gray-800 duration-200"/>
-              <MdDelete className="text-2xl cursor-pointer hover:text-gray-800 duration-200"/>
+              <LuPencil onClick={handleEdit} className="text-xl cursor-pointer hover:text-gray-800 duration-200"/>
+              <MdDelete onClick={handleDelete} className="text-2xl cursor-pointer hover:text-gray-800 duration-200"/>
             </div>
 
           </div>
         </div>
-      )}
-    </Draggable>
   );
 };
 

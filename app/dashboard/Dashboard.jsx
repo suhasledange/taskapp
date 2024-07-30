@@ -1,9 +1,26 @@
 'use client'
 import TodoForm from '@/components/Forms/TodoForm';
 import Sidebar from '@/components/Sidebar';
-import React, { useState } from 'react'
+import { useTodoContext } from '@/context/TodoProvider';
+import React, { useEffect, useState } from 'react'
 
 const Dashboard = ({children}) => {
+
+
+  const {fetchUserData,fetchUserTodo,userData} = useTodoContext();
+
+  useEffect(()=>{
+    fetchUserData()
+  },[])
+
+
+  useEffect(()=>{
+
+    if (userData && userData._id) {
+      fetchUserTodo(userData._id);
+    }
+
+  },[userData])
 
   return (
     <div className="flex h-full overflow-hidden relative">

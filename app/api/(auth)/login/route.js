@@ -10,9 +10,7 @@ export async function POST(request){
     try {
        
         const {email, password} = await request.json()
-         
         const user = await User.findOne({email})
-
         if(!user){
             return NextResponse.json({error: "User does not exist"}, {status: 400})
         }

@@ -1,11 +1,46 @@
+import dbConnect from '@/lib/dbConnect';
+import Todo from '@/models/todo.model';
 import axios from 'axios';
 import { NextResponse } from 'next/server';
 
-const TODO_API_URL = 'https://dummyjson.com/todos';
 
-export async function GET(){
+dbConnect()
 
-        const response = await axios.get(TODO_API_URL);
-        return NextResponse.json({todos:response.data.todos})
+export async function POST(req,res){
+
+
+        try {
+                const {
+                        title,
+                        description, 
+                        status,
+                        priority,
+                        deadline,
+                        owner
+                
+                } = await req.json()
+
+
+                const newTodo = new Todo({
+                     title,
+                     description, 
+                     status: status === "" ? "Todo" : status,
+                     priority,
+                     deadline,
+                     owner
+                })
+        
+                const savedTodo = await newTodo.save()
+        
+                return NextResponse.json({
+                    message: "Todo created successfully",
+                    success: true,
+                    savedTodo
+                })
+        
+            } catch (error) {
+                return NextResponse.json({error: error}, {status: 500})
+        
+            }
 
 }
