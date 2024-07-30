@@ -16,9 +16,7 @@ export const TodoProvider = ({ children }) => {
     try {
       
       const res = await axios.get("/api/user")
-      if(res.status === 200){
-        setUserData(res.data.data)
-      }
+      setUserData(res.data.data)
 
     } catch (error) {
         console.log("Error fetching user data",error)
