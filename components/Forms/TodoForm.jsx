@@ -13,9 +13,9 @@ import { useTodoContext } from "@/context/TodoProvider";
 import axios from "axios";
 import Loader from "../Loader";
 
-const TodoForm = ({ data }) => {
+const TodoForm = () => {
 
-  const {userData,fetchUserTodo} = useTodoContext()
+  const {userData,fetchUserTodo,initialFormData,setInitialFormData} = useTodoContext()
 
   const {
     register,
@@ -31,16 +31,16 @@ const TodoForm = ({ data }) => {
   const [loading,setLoading] = useState(false)
 
   const setDataValues = () => {
-    setValue("title", data.title);
-    setValue("deadline", new Date(data.deadline).toISOString().substring(0, 10));
-    setValue("priority", data.priority);
-    setValue("status", data.status);
-    setValue("description", data.description);
+    setValue("title", initialFormData.title);
+    setValue("deadline", new Date(initialFormData.deadline).toISOString().substring(0, 10));
+    setValue("priority", initialFormData.priority);
+    setValue("status", initialFormData.status);
+    setValue("description", initialFormData.description);
   };
 
   useEffect(() => {
-    if (data) setDataValues();
-  }, [data, setValue]);
+    if (initialFormData) setDataValues();
+  }, [initialFormData, setValue]);
 
   useEffect(() => {
     if (formDialog) {
@@ -52,19 +52,37 @@ const TodoForm = ({ data }) => {
     }
   }, [formDialog]);
 
+
+  const formReset = ()=>{
+    setFormDialog(false);
+    setInitialFormData(null)
+    reset()
+  }
+
   const onSubmit = async (data) => {
 
     if(userData && userData?._id)
     try {
       setLoading(true)
-      await axios.post("/api/todo", {
-        ...data,
-        owner: userData?._id,  
-      });
+
+      if(initialFormData){
+
+        const {todoId,...remove} = initialFormData;
+        
+         await axios.patch(`/api/todo/${todoId}`,{
+          data
+        })
+      }
+
+      else{
+        await axios.post("/api/todo", {
+          ...data,
+          owner: userData?._id,  
+        });
+      }
       setLoading(false)
       fetchUserTodo(userData._id);
-      setFormDialog(false);
-      reset()
+      formReset()
     } catch (error) {
       console.error("Error creating todo:", error);
       setLoading(false)
@@ -78,7 +96,7 @@ const TodoForm = ({ data }) => {
       <div className={`fixed inset-0 z-30 overflow-y-auto overflow-x-hidden`}>
         <div
           className={`fixed inset-0 w-full ${isAnimating ? "opacity-60":"opacity-0"} duration-200  transform h-full bg-black `}
-          onClick={() => setFormDialog(false)}
+          onClick={formReset}
         ></div>
         <div className="flex flex-col items-end min-h-screen">
           <div
@@ -90,7 +108,7 @@ const TodoForm = ({ data }) => {
               <div className="flex items-center text-gray-700 justify-between mb-10">
                 <div className="flex items-center gap-4">
                   <IoCloseSharp
-                    onClick={() => setFormDialog(false)}
+                    onClick={formReset}
                     className="text-2xl cursor-pointer"
                   />
                   <IoMdResize className="text-lg cursor-pointer" />
@@ -143,7 +161,7 @@ const TodoForm = ({ data }) => {
                 </div>
 
                 <div className="mb-4 flex items-center">
-                  <label className="text-gray-500 font-medium flex items-center w-1/3 gap-4">
+                  <label className="text-gray-500  font-medium flex items-center w-1/3 gap-4">
                     <MdLowPriority className="text-gray-700 text-xl" />
                     Priority
                   </label>

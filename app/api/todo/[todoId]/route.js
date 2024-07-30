@@ -18,3 +18,29 @@ export async function DELETE(req,params){
     }
 
 }
+
+export async function PATCH(req,params){
+
+    try {
+        const id = params.params.todoId;
+        const {data} = await req.json()
+        const updatedTodo = await Todo.findByIdAndUpdate(id,data,{new:true});
+
+        if (!updatedTodo) {
+            return NextResponse.json({
+                message: "Todo not found",
+                success: false
+            }, { status: 404 });
+        }
+
+        return NextResponse.json({
+            message: "Todo updated successfully",
+            success: true,
+            updatedTodo
+        });
+
+    } catch (error) {
+        return NextResponse.json({error: error}, {status: 500})
+
+    }
+}

@@ -10,8 +10,7 @@ import { useTodoContext } from "@/context/TodoProvider";
 
 const Card = ({ title, description, priority, deadline,status,todoId ,updatedAt}) => {
 
-
-  const {fetchUserTodo,userData} = useTodoContext()
+  const {fetchUserTodo,userData,setInitialFormData,setFormDialog} = useTodoContext()
 
   function bgcolorChange(props) {
     return props.isDragging
@@ -40,9 +39,9 @@ const Card = ({ title, description, priority, deadline,status,todoId ,updatedAt}
 
   }
   const handleEdit = async()=>{
-
-      
-
+        const data = { title, description, priority, deadline,status,todoId}
+        setInitialFormData(data);
+        setFormDialog(true)
   }
 
   return (

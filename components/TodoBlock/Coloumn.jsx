@@ -19,6 +19,7 @@ const Coloumn = ({ title, todo, id }) => {
                     description={t.description}
                     priority={t.priority}
                     deadline={t.deadline}
+                    status={t.status}
                     todoId={t._id}
                     updatedAt={t.updatedAt}
                 />

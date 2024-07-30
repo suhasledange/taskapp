@@ -24,7 +24,6 @@ const TodoBlock = () => {
             console.log(event)
     }
 
-
     const filteredTodos = todoData?.filter((todo) => {
       const lowerCaseSearch = searchTerm.toLowerCase();
       return (

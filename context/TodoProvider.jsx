@@ -44,7 +44,19 @@ export const TodoProvider = ({ children }) => {
 
    
     return (
-        <TodoContext.Provider value={{fetchUserTodo,fetchUserData,userData, initialFormData,formDialog,setFormDialog,loading,todoData,setTodoData }}>
+        <TodoContext.Provider value={
+          {
+            fetchUserTodo,
+            fetchUserData,
+            userData,
+            initialFormData,
+            setInitialFormData,
+            setFormDialog,
+            formDialog,
+            loading,
+            todoData,
+            setTodoData
+             }}>
             {children}
         </TodoContext.Provider>
     );
