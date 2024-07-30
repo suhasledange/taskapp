@@ -36,10 +36,10 @@ const Todos = ({todos}) => {
   return (
     <div className="bg-white w-full h-[calc(63vh)] p-3 py-2">
         <div className="flex w-full items-center gap-5 h-full">
-          <Coloumn todo={todo} title="To Do" id={"1"}/>
-          <Coloumn todo={inProgress} title="In Progress" id={"1"}/>
-          <Coloumn todo={underReview} title="Under review" id={"3"}/>
-          <Coloumn todo={finished} title="Finished" id={"2"}/>
+          <Coloumn todo={todo} title="To Do" id={"1"} status="Todo"/>
+          <Coloumn todo={inProgress} title="In Progress" id={"1"} status="InProgress"/>
+          <Coloumn todo={underReview} title="Under review" id={"3"} status="UnderReview"/>
+          <Coloumn todo={finished} title="Finished" id={"2"} status="Finished"/>
         </div>
     </div>
   );

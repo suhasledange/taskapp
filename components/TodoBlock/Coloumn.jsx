@@ -1,8 +1,21 @@
+'use client'
 import React from "react";
 import { Droppable } from "react-beautiful-dnd";
 import { BsFilterRight } from "react-icons/bs";
 import Card from "./Card";
-const Coloumn = ({ title, todo, id }) => {
+import { IoMdAdd } from "react-icons/io";
+import { useTodoContext } from "@/context/TodoProvider";
+const Coloumn = ({ title, todo, id ,status}) => {
+
+
+  const {setInitialFormData,setFormDialog} = useTodoContext();
+
+  const handleAdd = async ()=>{
+
+    const data = { status : status }
+    setInitialFormData(data);
+    setFormDialog(true)
+  }
 
   return (
     <div className="flex-1 column h-full overflow-scroll">
@@ -26,7 +39,9 @@ const Coloumn = ({ title, todo, id }) => {
             ))
 
             }
-
+        <div>
+          <button onClick={handleAdd} className="flex items-center justify-between p-2 text-sm active:scale-95 hover:bg-gray-950 duration-150 bg-gray-900 w-full rounded-md text-gray-200">Add New <IoMdAdd className="text-xl"/> </button>
+        </div>
       </div>
     </div>
   );
