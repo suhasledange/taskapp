@@ -9,7 +9,7 @@ export const TodoProvider = ({ children }) => {
   const [todoData,setTodoData] = useState([]);
   const [userData,setUserData] = useState([]);
   const [formDialog,setFormDialog] = useState(false);
-  const [loading,setLoading] = useState(true);
+  const [Todoloading,setTodoLoading] = useState(true);
   const [initialFormData,setInitialFormData] = useState(null);
 
   const fetchUserData = async ()=>{
@@ -31,11 +31,14 @@ export const TodoProvider = ({ children }) => {
 
       if(res.data.status === 200){
         setTodoData(res.data.data)
+        setTodoLoading(false)
       }
 
 
     } catch (error) {
       console.log("Error fetching user todos")
+      setTodoData(false)
+
     }
 
   }
@@ -51,7 +54,8 @@ export const TodoProvider = ({ children }) => {
             setInitialFormData,
             setFormDialog,
             formDialog,
-            loading,
+            Todoloading,
+            setTodoLoading,
             todoData,
             setTodoData
              }}>
