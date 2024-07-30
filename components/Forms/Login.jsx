@@ -88,7 +88,7 @@ const Login = ({ setDialog }) => {
         
       </div>
       <div className="text-center">
-            <p className="text-sm">Don't have an account? Create a <span onClick={()=>setDialog('signup')} className="text-btn cursor-pointer">new account.</span></p>
+            <p className="text-sm">Don&apos;t have an account? Create a <span onClick={()=>setDialog('signup')} className="text-btn cursor-pointer">new account.</span></p>
         </div>
     </form>
   );
