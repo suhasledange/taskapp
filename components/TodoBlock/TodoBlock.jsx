@@ -53,7 +53,6 @@ const TodoBlock = () => {
 
             ))
            }
-
             <button onClick={()=>setFormDialog(true)} className='flex items-center justify-center bg-purple-900 text-white font-normal text-md rounded-md py-1 px-2 gap-2'>Create new <MdAddCircle/></button>
 
         </div>
