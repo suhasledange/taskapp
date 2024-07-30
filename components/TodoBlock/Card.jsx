@@ -47,8 +47,8 @@ const Card = ({ title, description, priority, deadline,status,todoId ,updatedAt}
 
   return (
    
-        <div className="bg-gray-100 rounded-md my-3 p-3">
-          <h1 className="text-lg font-medium text-gray-700 mb-1">{title}</h1>
+        <div className="bg-gray-100 rounded-md mb-3 p-3">
+          <h1 className="text-md font-medium text-gray-700 mb-1">{title}</h1>
           <p className="text-gray-700 text-sm mb-2">{description}</p>
          <div className="flex items-center justify-start mb-4">
           <div
@@ -58,19 +58,19 @@ const Card = ({ title, description, priority, deadline,status,todoId ,updatedAt}
                 : priority === "Medium"
                 ? "bg-yellow-500"
                 : "bg-green-500"
-            } p-1 text-sm font-medium rounded-md text-gray-200`}
+            } p-1 text-sm rounded-md text-gray-200`}
           >
             {priority}
           </div>
           </div>
-          <p className="text-gray-800 text-md font-medium flex items-center justify-start text-md gap-1 mb-3"><IoTimeOutline className="text-2xl text-black"/> {deadline}</p>
+          <p className="text-gray-800 text-sm font-medium flex items-center justify-start text-md gap-1 mb-3"><IoTimeOutline className="text-xl text-black"/> {deadline}</p>
           <div className="text-sm flex items-center justify-between text-gray-500 font-medium">
             <p>
               {findDays(updatedAt)}
             </p>
             <div className="flex items-center justify-end gap-4">
-              <LuPencil onClick={handleEdit} className="text-xl cursor-pointer hover:text-gray-800 duration-200"/>
-              <MdDelete onClick={handleDelete} className="text-2xl cursor-pointer hover:text-gray-800 duration-200"/>
+              <LuPencil onClick={handleEdit} className="text-lg cursor-pointer hover:text-gray-800 duration-200"/>
+              <MdDelete onClick={handleDelete} className="text-xl cursor-pointer hover:text-gray-800 duration-200"/>
             </div>
 
           </div>

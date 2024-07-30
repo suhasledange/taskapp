@@ -57,29 +57,29 @@ const Sidebar = () => {
                     <div className=' w-10 h-10 cursor-pointer'>
                         <Image alt="logouser" className='w-full object-contain h-full' src="/DefaultProfile.svg" width={500} height={500}/>
                     </div>
-                    <h1 className='font-semibold tracking-wider text-lg'>{userData?.fullname}</h1>
+                    <h1 className='font-semibold tracking-wider text-md'>{userData?.fullname}</h1>
             </div>
 
             <div className='mt-4 flex gap-4 md:gap-0 md:flex-row flex-col justify-between items-center'>
-                <div className='flex items-center gap-4 text-xl text-gray-700 pl-1'>
+                <div className='flex items-center gap-4 text-lg text-gray-700 pl-1'>
                     <button className=''><GoBell/></button>
                     <button className='relative'><LuLoader/> <div className='absolute rounded-full w-3  h-3 bg-yellow-500 -top-1 -right-1'></div> </button>
                     <button className=''><MdKeyboardDoubleArrowRight/></button>
                 </div>
-                <button onClick={handleLogout} className='bg-gray-100 px-3 py-1 md:w-auto w-full active:scale-95 font-medium text-gray-600'>Logout</button>
+                <button onClick={handleLogout} className='bg-gray-100 px-3 py-1 md:w-auto w-full active:scale-95 font-medium text-sm hover:bg-gray-200/60 duration-150 text-gray-600'>Logout</button>
             </div>
         </div>
 
         <div className='flex flex-col w-full my-4'>
             { 
             links.map(l => (  
-                <Link  href={l.link} className={`text-md text-gray-700 font-normal ${pathname === l.link ? "bg-gray-100 ":"bg-transparent"} rounded-sm p-2 flex items-center gap-2 duration-200 `} key={l.id}> {l.logo} { l.text } </Link>
+                <Link  href={l.link} className={`text-sm text-gray-700 font-normal ${pathname === l.link ? "bg-gray-100 ":"bg-transparent"} rounded-sm p-2 flex items-center gap-2 duration-200 `} key={l.id}> {l.logo} { l.text } </Link>
             ))
             }
         
         </div>
         <div>
-            <button onClick={()=>setFormDialog(true)} className='flex w-full items-center justify-center bg-purple-900 text-white font-normal text-lg rounded-md p-2 px-6 gap-2'>Create new task <MdAddCircle/></button>
+            <button onClick={()=>setFormDialog(true)} className='flex w-full items-center justify-center bg-purple-900 text-white font-normal text-md rounded-md p-2 px-6 gap-2'>Create new task <MdAddCircle/></button>
         </div>
       
         </div>
@@ -88,7 +88,7 @@ const Sidebar = () => {
                 <div className='flex cursor-pointer items-center gap-3 bg-gray-100 rounded-md w-full p-3'>
                 <IoMdDownload className='text-2xl'/>
                 <div className='text-gray-800'>
-                <h1 className='text-lg mb-1 font-medium'>Download the app </h1>
+                <h1 className='text-md mb-1 font-medium'>Download the app </h1>
                 <p className='text-xs'>Get the full experience</p>
                 </div>
 

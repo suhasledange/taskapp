@@ -6,9 +6,9 @@ const Coloumn = ({ title, todo, id }) => {
 
   return (
     <div className="flex-1 column h-full overflow-scroll">
-      <div className="text-gray-700 flex items-center justify-between text-lg font-medium sticky top-0 bg-white pt-1 pb-3">
+      <div className="text-gray-700 flex items-center justify-between text-md font-medium sticky top-0 bg-white pt-1 pb-3">
         <h1>{title}</h1>
-        <BsFilterRight className="text-3xl" />
+        <BsFilterRight className="text-2xl" />
       </div>
       <div className="">
                 {

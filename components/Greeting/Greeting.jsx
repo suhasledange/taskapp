@@ -32,8 +32,8 @@ const Greeting = () => {
   return (
     <div className='w-full mb-1'>
         <div className='flex items-center justify-between mb-3'>
-            <h1 className='text-3xl font-semibold'>{greeting}, {name}</h1>
-            <button className='font-medium text-gray-700 flex items-center justify-center gap-1'>Help & feedback <FiHelpCircle/> </button>
+            <h1 className='text-2xl font-semibold'>{greeting}, {name}</h1>
+            <button className='font-medium text-sm text-gray-700 flex items-center justify-center gap-1'>Help & feedback <FiHelpCircle/> </button>
         </div>
         <div className='flex items-center justify-center gap-3 flex-wrap'>
             {

@@ -39,7 +39,7 @@ const TodoBlock = () => {
       <div className='flex flex-wrap items-center justify-between gap-3 mb-3'>
         <div className='flex lg:w-auto w-full items-center justify-between gap-1 bg-white p-2'>
             <input
-             className=' outline-none'
+             className=' outline-none w-full text-sm'
              type='text' 
              placeholder='Search'
              value={searchTerm}
@@ -47,7 +47,7 @@ const TodoBlock = () => {
              />
             <CiSearch className='text-lg'/>
         </div>
-        <div className='text-md flex flex-wrap items-center text-gray-700 gap-3'>
+        <div className='text-sm flex flex-wrap items-center text-gray-700 gap-3'>
 
            {
             ButtonOperations.map(btn => (
