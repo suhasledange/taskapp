@@ -1,6 +1,6 @@
 'use client'
 import React from "react";
-import { Draggable } from "react-beautiful-dnd";
+import { Draggable } from "@hello-pangea/dnd";
 import { IoTimeOutline } from "react-icons/io5";
 import { MdDelete } from "react-icons/md";
 import { LuPencil } from "react-icons/lu";
@@ -8,7 +8,7 @@ import { findDays } from "@/lib/findDays";
 import axios from "axios";
 import { useTodoContext } from "@/context/TodoProvider";
 
-const Card = ({ title, description, priority, deadline,status,todoId ,updatedAt}) => {
+const Card = ({ title, description, priority, deadline,status,todoId ,updatedAt,index}) => {
 
   const {fetchUserTodo,userData,setInitialFormData,setFormDialog} = useTodoContext()
 
@@ -45,8 +45,15 @@ const Card = ({ title, description, priority, deadline,status,todoId ,updatedAt}
   }
 
   return (
-   
-        <div className="bg-gray-100 rounded-md mb-3 p-3">
+      <Draggable draggableId={todoId} index={index}>
+        {
+          (provided)=>(
+
+        <div 
+          {...provided.draggableProps}
+          {...provided.dragHandleProps}    
+          ref={provided.innerRef}
+        className="bg-gray-100 rounded-md mb-3 p-3">
           <h1 className="text-md font-medium text-gray-700 mb-1">{title}</h1>
           <p className="text-gray-700 text-sm mb-2">{description}</p>
          <div className="flex items-center justify-start mb-4">
@@ -74,6 +81,11 @@ const Card = ({ title, description, priority, deadline,status,todoId ,updatedAt}
 
           </div>
         </div>
+
+)
+}
+      </Draggable>
+
   );
 };
 

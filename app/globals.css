@@ -48,8 +48,17 @@ input[type='date']::-webkit-calendar-picker-indicator {
 
 ::-webkit-scrollbar-track {
     background-color: #d2d2d2;
-}
+} 
 
+.column1 {
+        height: calc(100% - 2.6rem); 
+        overflow-x: auto; 
+        overflow-y: auto; 
+      }
+
+.scroll-none{
+    overflow-y: none;
+}
 .column{
     -ms-overflow-style:none;
     scrollbar-width: none;

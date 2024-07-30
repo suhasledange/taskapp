@@ -18,7 +18,7 @@ const TodoBlock = () => {
     ]
 
     const [searchTerm, setSearchTerm] = useState('');
-    const {formDialog,setFormDialog,todoData} = useTodoContext()
+    const {setFormDialog,todoData} = useTodoContext()
 
     const handleBtn = async (event)=>{
             console.log(event)
@@ -31,7 +31,6 @@ const TodoBlock = () => {
         todo.priority.toLowerCase().includes(lowerCaseSearch)
       );
     });
-
 
   return (
     <div className='py-1'>
