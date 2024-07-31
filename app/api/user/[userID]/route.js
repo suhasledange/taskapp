@@ -3,9 +3,9 @@ import Todo from "@/models/todo.model";
 import { NextRequest,NextResponse } from "next/server";
 
 
-await dbConnect()
 
 export async function GET(req,params){
+    await dbConnect()
 
 
     const id = params.params.userID;

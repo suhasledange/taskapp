@@ -4,9 +4,9 @@ import User from "@/models/user.model";
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 
-await dbConnect()
 
 export async function POST(request){
+    await dbConnect()
     try {
        
         const {email, password} = await request.json()
@@ -28,7 +28,7 @@ export async function POST(request){
             email: user.email,
         };
 
-        const token = jwt.sign(tokenData, process.env.ACCESS_TOKEN_SECRET, { expiresIn:String(process.env.ACCESS_TOKEN_EXPIRY) });
+        const token = jwt.sign(tokenData, process.env.ACCESS_TOKEN_SECRET, { expiresIn:process.env.ACCESS_TOKEN_EXPIRY});
 
         const tokenExpiryTimestamp = Date.now() + (24 * 60 * 60 * 1000); 
         const tokenExpiryDate = new Date(tokenExpiryTimestamp);

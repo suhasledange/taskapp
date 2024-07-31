@@ -3,9 +3,9 @@ import Todo from '@/models/todo.model';
 import { NextResponse } from 'next/server';
 
 
-await dbConnect()
 
 export async function POST(req,res){
+    await dbConnect()
 
 
         try {

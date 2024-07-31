@@ -3,9 +3,9 @@ import { getDataFromToken } from "@/lib/getDataFromToken";
 import User from "@/models/user.model";
 import { NextResponse } from "next/server";
 
-await dbConnect()
 
 export async function GET(req,res){
+    await dbConnect()
 
     try {
        

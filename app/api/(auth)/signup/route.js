@@ -3,9 +3,11 @@ import dbConnect from "@/lib/dbConnect";
 import User from "@/models/user.model";
 import bcrypt from 'bcrypt'
 
-await dbConnect()
 
 export async function POST(request){
+
+await dbConnect()
+
     try {
         const {fullname, email, password} = await request.json()
         const user = await User.findOne({email})

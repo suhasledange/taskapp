@@ -30,18 +30,21 @@ const Sidebar = () => {
         {id:5,text:'Analytics',link:"/dashboard/analytics",logo:<IoAnalyticsOutline/>},
     ]
 
-    const handleLogout = async()=>{
-
+    const handleLogout = async () => {
         try {
-            const res = await axios.get("/api/logout")
+            const res = await axios.get("/api/logout");
+            if (res.status === 200) {
                 localStorage.setItem('logout', Date.now());
-                router.replace('/');
+                await router.replace('/');
                 setTodoData([]);
                 setUserData([]);
+            } else {
+                console.log("Logout failed with status:", res.status);
+            }
         } catch (error) {
-            console.log("failed to logout",error)
+            console.log("Failed to logout", error);
         }
-    }
+    };
  
   return (
     <div className="bg-white h-screen border flex flex-col justify-between overflow-hidden">

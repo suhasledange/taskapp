@@ -3,9 +3,12 @@ import Todo from "@/models/todo.model";
 import { NextRequest,NextResponse } from "next/server";
 
 
-await dbConnect()
 
 export async function DELETE(req,params){
+
+    await dbConnect()
+
+
     const id = params.params.todoId;
     try {
        
@@ -23,6 +26,7 @@ export async function DELETE(req,params){
 }
 
 export async function PATCH(req,params){
+    await dbConnect()
 
     try {
         const id = params.params.todoId;
