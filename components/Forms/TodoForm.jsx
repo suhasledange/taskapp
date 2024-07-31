@@ -144,7 +144,7 @@ const TodoForm = () => {
                     placeholder="Title"
                     className={`mt-1 ${
                       errors.title ? "border-b border-b-red-500" : "border-none"
-                    } block text-3xl w-full outline-none `}
+                    } block text-3xl w-full  outline-none `}
                     {...register("title", { required: true })}
                   />
                 </div>
@@ -156,7 +156,7 @@ const TodoForm = () => {
                     </label>
 
                     <select
-                      className="mt-1 block outline-none p-2 sm:text-sm w-full text-gray-400 font-medium"
+                      className="mt-1 block bg-transparent outline-none p-2 sm:text-sm w-full text-gray-400 font-medium"
                       {...register("status", { required: true })}
                     >
                       <option value="">Not selected</option>
@@ -180,7 +180,7 @@ const TodoForm = () => {
                     Priority
                   </label>
                   <select
-                    className="mt-1 block w-full outline-none p-2 sm:text-sm text-gray-400 font-medium"
+                    className="mt-1 block bg-transparent w-full outline-none p-2 sm:text-sm text-gray-400 font-medium"
                     {...register("priority")}
                   >
                     <option value="">Not selected</option>
@@ -204,7 +204,7 @@ const TodoForm = () => {
                   <textarea
                    type="text"
                    placeholder="Not selected"
-                   className="mt-1 block resize-none w-full outline-none p-2 sm:text-sm"
+                   className="mt-1 block bg-transparent resize-none w-full outline-none p-2 sm:text-sm"
                    {...register("description")}
                   ></textarea>
                 </div>
@@ -217,7 +217,7 @@ const TodoForm = () => {
                   <input
                     type="date"
                     placeholder="Not selected"
-                    className="mt-1 block relative w-full text-gray-400 outline-none p-2 sm:text-sm"
+                    className="mt-1 block relative w-full bg-transparent text-gray-400 outline-none p-2 sm:text-sm"
                     {...register("deadline")}
                   />
                 </div>
