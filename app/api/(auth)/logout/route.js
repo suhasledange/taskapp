@@ -1,6 +1,8 @@
+import dbConnect from "@/lib/dbConnect";
 import { NextResponse } from "next/server";
 
 export async function GET(req, res) {
+    await dbConnect()
   try {
     const response = NextResponse.json({
       message: "Logout successful",
@@ -16,6 +18,7 @@ export async function GET(req, res) {
     console.log("Token Removed:", response.cookies.get("token"));
 
     return response;
+    
   } catch (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }

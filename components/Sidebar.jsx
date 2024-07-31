@@ -32,10 +32,11 @@ const Sidebar = () => {
 
     const handleLogout = async () => {
         try {
-            const res = await axios.get("/api/logout");
+            const res = await fetch("/api/logout");
+            console.log(res)
             if (res.status === 200) {
                 localStorage.setItem('logout', Date.now());
-                await router.replace('/');
+                router.replace('/');
                 setTodoData([]);
                 setUserData([]);
             } else {

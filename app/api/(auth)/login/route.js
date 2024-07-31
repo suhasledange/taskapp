@@ -46,9 +46,7 @@ export async function POST(request) {
       maxAge: 24 * 60 * 60,
       path: "/",
     });
-    console.log("Token Set:", token);
-    console.log("Token Removed:", response.cookies.get("token"));
-
+    
     return response;
   } catch (error) {
     return NextResponse.json({ error: error }, { status: 500 });
