@@ -10,7 +10,13 @@ export async function GET(req, res) {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       expires: new Date(0),
+      path: "/",
     });
+
+    console.log("Logiout")
+
+    console.log("Environment:", process.env.NODE_ENV);
+    console.log("Token Removed:", response.cookies.get("token"));
 
     return response;
   } catch (error) {
