@@ -10,6 +10,10 @@ export async function GET(req,res){
         const email = await getDataFromToken(req);
         const user = await User.findOne({email}).select("-password");
 
+        if (!user) {
+            return NextResponse.json({ error: "User not found" }, { status: 404 });
+        }
+
         return NextResponse.json({
             message:"User found",
             status:200,

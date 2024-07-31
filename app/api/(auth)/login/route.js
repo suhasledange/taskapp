@@ -28,7 +28,7 @@ export async function POST(request){
             email: user.email
         }
 
-        const token = jwt.sign(tokenData, process.env.ACCESS_TOKEN_SECRET, {expiresIn:process.env.ACCESS_TOKEN_EXPIRY})
+        const token = jwt.sign(tokenData, process.env.ACCESS_TOKEN_SECRET, {expiresIn:String(process.env.ACCESS_TOKEN_EXPIRY)})
 
         const response = NextResponse.json({
             message: "Login successful",
@@ -37,6 +37,8 @@ export async function POST(request){
 
         response.cookies.set("token", token, {
             httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            maxAge: 24 * 60 * 60 * 1000,
         })
 
         return response;
