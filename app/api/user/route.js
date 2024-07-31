@@ -11,7 +11,9 @@ export async function GET(req,res){
         const user = await User.findOne({email}).select("-password");
 
         if (!user) {
-            return NextResponse.json({ error: "User not found" }, { status: 404 });
+            const response = NextResponse.json({ error: "User not found" }, { status: 404 });
+            response.cookies.set("token", "", { httpOnly: true, expires: new Date(0) });
+            return response;
         }
 
         return NextResponse.json({
@@ -21,8 +23,9 @@ export async function GET(req,res){
         })
 
     } catch (error) {
-        return NextResponse.json({ error: error.message},
-            {status: 400});
+        const response = NextResponse.json({ error: error.message }, { status: 401 });
+        response.cookies.set("token", "", { httpOnly: true, expires: new Date(0) });
+        return response;
     }
     
 }
