@@ -34,10 +34,8 @@ const Sidebar = () => {
 
         try {
             const res = await axios.get("/api/logout")
-            if(res){
                 router.replace('/')
                 setTodoData([])
-            }
         } catch (error) {
             console.log("failed to logout",error)
         }
