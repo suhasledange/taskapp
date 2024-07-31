@@ -42,10 +42,6 @@ const Sidebar = () => {
         }
 
     }
-
-
-   
-
  
   return (
     <div className="bg-white h-screen border flex flex-col justify-between overflow-hidden">
