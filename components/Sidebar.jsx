@@ -19,7 +19,7 @@ const Sidebar = () => {
 
     const pathname = usePathname()
     const router = useRouter();
-    const {formDialog,setFormDialog,userData} = useTodoContext()
+    const {formDialog,setFormDialog,userData,setTodoData} = useTodoContext()
 
     const links = [
 
@@ -36,6 +36,7 @@ const Sidebar = () => {
             const res = await axios.get("/api/logout")
             if(res){
                 router.replace('/')
+                setTodoData([])
             }
         } catch (error) {
             console.log("failed to logout",error)
