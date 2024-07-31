@@ -15,7 +15,7 @@ export async function GET() {
       path: "/",
     });
 
-    console.log(response.cookies.get("token"))
+    console.log("token is : ", response.cookies.get("token"))
 
     if(response.cookies.get("token").value !== '') return NextResponse.json({message:"Failed to remove token",success:false}) 
 
