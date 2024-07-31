@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 
 export async function GET(req, res) {
-    console.log("Environment:", process.env.NODE_ENV);
   try {
     const response = NextResponse.json({
       message: "Logout successful",
@@ -13,6 +12,8 @@ export async function GET(req, res) {
       expires: new Date(0),
       path: "/",
     });
+
+    console.log("Token Removed:", response.cookies.get("token"));
 
     return response;
   } catch (error) {

@@ -6,7 +6,6 @@ import jwt from "jsonwebtoken";
 
 export async function POST(request) {
   await dbConnect();
-  console.log("Environment:", process.env.NODE_ENV); 
   try {
     const { email, password } = await request.json();
     const user = await User.findOne({ email });
@@ -47,8 +46,8 @@ export async function POST(request) {
       maxAge: 24 * 60 * 60,
       path: "/",
     });
-
-    console.log("Login")
+    console.log("Token Set:", token);
+    console.log("Token Removed:", response.cookies.get("token"));
 
     return response;
   } catch (error) {
