@@ -7,12 +7,11 @@ export async function GET() {
     const response = NextResponse.json({
       message: "Logout successful",
       success: true,
-    })
-    
-    response.cookies.delete("token", "", {
+    });
+
+    response.cookies.delete("token", {
       httpOnly: true,
       secure: true,
-      expires: new Date(0),
       path: "/",              
     });
 

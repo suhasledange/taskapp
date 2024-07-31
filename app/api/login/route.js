@@ -20,7 +20,7 @@ export async function POST(request) {
 
     if (!validPassword) {
       return NextResponse.json(
-        { error: "Invlid Credentials" },
+        { error: "Invalid Credentials" },
         { status: 400 }
       );
     }
@@ -41,7 +41,7 @@ export async function POST(request) {
     const response = NextResponse.json({
       message: "Login successful",
       success: true,
-    })
+    });
 
     response.cookies.set("token", token, {
       httpOnly: true,
@@ -50,9 +50,9 @@ export async function POST(request) {
       path: "/",
     });
 
-    return response
+    return response;
 
   } catch (error) {
-    return NextResponse.json({ error: error }, { status: 500 });
+    return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
