@@ -144,19 +144,19 @@ const TodoForm = () => {
                     placeholder="Title"
                     className={`mt-1 ${
                       errors.title ? "border-b border-b-red-500" : "border-none"
-                    } block text-4xl w-full outline-none `}
+                    } block text-3xl w-full outline-none `}
                     {...register("title", { required: true })}
                   />
                 </div>
                 <div className="mb-4 items-center">
                   <div className="flex items-center">
-                    <label className="text-gray-500 font-medium flex items-center w-1/3 gap-4">
+                    <label className="text-gray-500 font-medium flex items-center w-1/2 gap-4">
                       <LuLoader className="text-black text-xl" />
                       Status
                     </label>
 
                     <select
-                      className="mt-1 block w-auto outline-none p-2 sm:text-sm text-gray-400 font-medium"
+                      className="mt-1 block outline-none p-2 sm:text-sm w-full text-gray-400 font-medium"
                       {...register("status", { required: true })}
                     >
                       <option value="">Not selected</option>
@@ -175,12 +175,12 @@ const TodoForm = () => {
                 </div>
 
                 <div className="mb-4 flex items-center">
-                  <label className="text-gray-500  font-medium flex items-center w-1/3 gap-4">
+                  <label className="text-gray-500  font-medium flex items-center w-1/2 gap-4">
                     <MdLowPriority className="text-gray-700 text-xl" />
                     Priority
                   </label>
                   <select
-                    className="mt-1 block w-auto outline-none p-2 sm:text-sm text-gray-400 font-medium"
+                    className="mt-1 block w-full outline-none p-2 sm:text-sm text-gray-400 font-medium"
                     {...register("priority")}
                   >
                     <option value="">Not selected</option>
@@ -191,27 +191,27 @@ const TodoForm = () => {
                 </div>
 
                 <div className="mb-4 flex items-center">
-                  <label className="text-gray-500 font-medium flex items-center w-1/3 gap-4">
+                  <label className="text-gray-500 font-medium flex items-center w-1/2 gap-4">
                     <LuPencil className="text-gray-700 text-xl" />
                     Description
                   </label>
                   <input
                     type="text"
                     placeholder="Not selected"
-                    className="mt-1 block w-auto outline-none p-2 sm:text-sm"
+                    className="mt-1 block w-full outline-none p-2 sm:text-sm"
                     {...register("description")}
                   />
                 </div>
 
                 <div className="mb-4 flex items-center">
-                  <label className="text-gray-500 font-medium flex items-center w-1/3 gap-4">
+                  <label className="text-gray-500 font-medium flex items-center w-1/2 gap-4">
                     <RiCalendarScheduleLine className="text-gray-700 text-xl" />
                     Deadline
                   </label>
                   <input
                     type="date"
                     placeholder="Not selected"
-                    className="mt-1 block relative text-gray-400 w-auto outline-none p-2 sm:text-sm"
+                    className="mt-1 block relative w-full text-gray-400 outline-none p-2 sm:text-sm"
                     {...register("deadline")}
                   />
                 </div>
