@@ -23,6 +23,7 @@ const todoSchema = new Schema({
         type: String,
     },
     owner: {
+        index:true,
         type: Schema.Types.ObjectId,
         ref: "User",
     },
