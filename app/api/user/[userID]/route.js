@@ -1,6 +1,9 @@
+import dbConnect from "@/lib/dbConnect";
 import Todo from "@/models/todo.model";
 import { NextRequest,NextResponse } from "next/server";
 
+
+await dbConnect()
 
 export async function GET(req,params){
 

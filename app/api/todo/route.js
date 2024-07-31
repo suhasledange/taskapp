@@ -1,10 +1,9 @@
 import dbConnect from '@/lib/dbConnect';
 import Todo from '@/models/todo.model';
-import axios from 'axios';
 import { NextResponse } from 'next/server';
 
 
-dbConnect()
+await dbConnect()
 
 export async function POST(req,res){
 
