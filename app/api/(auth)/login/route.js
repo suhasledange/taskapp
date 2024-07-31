@@ -25,21 +25,24 @@ export async function POST(request){
         const tokenData = {
             id: user._id,
             fullname: user.fullname,
-            email: user.email
-        }
+            email: user.email,
+        };
 
-        const token = jwt.sign(tokenData, process.env.ACCESS_TOKEN_SECRET, {expiresIn:String(process.env.ACCESS_TOKEN_EXPIRY)})
+        const token = jwt.sign(tokenData, process.env.ACCESS_TOKEN_SECRET, { expiresIn:String(process.env.ACCESS_TOKEN_EXPIRY) });
+
+        const tokenExpiryTimestamp = Date.now() + (24 * 60 * 60 * 1000); 
+        const tokenExpiryDate = new Date(tokenExpiryTimestamp);
 
         const response = NextResponse.json({
             message: "Login successful",
             success: true,
-        })
+        });
 
         response.cookies.set("token", token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
-            maxAge: 24 * 60 * 60 * 1000,
-        })
+            expires: tokenExpiryDate,
+        });
 
         return response;
 
