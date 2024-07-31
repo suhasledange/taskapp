@@ -195,12 +195,18 @@ const TodoForm = () => {
                     <LuPencil className="text-gray-700 text-xl" />
                     Description
                   </label>
-                  <input
+                  {/* <input
                     type="text"
                     placeholder="Not selected"
                     className="mt-1 block w-full outline-none p-2 sm:text-sm"
                     {...register("description")}
-                  />
+                  /> */}
+                  <textarea
+                   type="text"
+                   placeholder="Not selected"
+                   className="mt-1 block resize-none w-full outline-none p-2 sm:text-sm"
+                   {...register("description")}
+                  ></textarea>
                 </div>
 
                 <div className="mb-4 flex items-center">

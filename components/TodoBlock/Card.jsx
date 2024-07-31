@@ -55,7 +55,7 @@ const Card = ({ title, description, priority, deadline,status,todoId ,updatedAt,
           ref={provided.innerRef}
         className="bg-gray-100 rounded-md mb-3 p-3">
           <h1 className="text-md font-medium text-gray-700 mb-1">{title}</h1>
-          <p className="text-gray-700 text-sm mb-2">{description}</p>
+          <p className="text-gray-700 text-sm mb-2 break-words">{description}</p>
          <div className="flex items-center justify-start mb-4">
           <div
             className={`${
