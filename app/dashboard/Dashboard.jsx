@@ -2,6 +2,7 @@
 import TodoForm from '@/components/Forms/TodoForm';
 import Sidebar from '@/components/Sidebar';
 import { useTodoContext } from '@/context/TodoProvider';
+import useSyncLogout from '@/lib/useSyncLogOut';
 import React, { useEffect, useState } from 'react'
 
 const Dashboard = ({children}) => {
@@ -13,6 +14,7 @@ const Dashboard = ({children}) => {
     fetchUserData()
   },[])
 
+  useSyncLogout()
 
   useEffect(()=>{
 
