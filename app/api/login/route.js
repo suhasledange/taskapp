@@ -42,11 +42,12 @@ export async function POST(request) {
 
     response.cookies.set("token", token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
+      secure: true,
       maxAge: 24 * 60 * 60 * 1000,
       path: "/",
     });
-    
+
+
     return response;
   } catch (error) {
     return NextResponse.json({ error: error }, { status: 500 });

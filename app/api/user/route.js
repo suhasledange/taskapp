@@ -17,10 +17,10 @@ export async function GET(req,res){
 
             response.cookies.set("token", "", {
                 httpOnly: true,
-                secure: process.env.NODE_ENV === "production",
+                secure: true,
                 expires: new Date(0),
                 path: "/",              
-                domain: "todonext-app.vercel.app" 
+                domain: "https://todonext-app.vercel.app" 
               });
           
            
@@ -38,10 +38,10 @@ export async function GET(req,res){
         const response = NextResponse.json({ error: error.message }, { status: 401 });
         response.cookies.set("token", "", {
             httpOnly: true,
-            secure: process.env.NODE_ENV === "production",
+            secure: true,
             expires: new Date(0),
             path: "/",              
-            domain: "todonext-app.vercel.app" 
+            domain: "https://todonext-app.vercel.app" 
           });
       
         return response;

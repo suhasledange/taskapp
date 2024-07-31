@@ -11,12 +11,11 @@ export async function GET() {
 
     response.cookies.set("token", "", {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
+      secure: true,
       expires: new Date(0),
       path: "/",              
-      domain: "todonext-app.vercel.app" 
+      domain: "https://todonext-app.vercel.app" 
     });
-
     const removedCookie = response.cookies.get("token");
     if (removedCookie && removedCookie.value !== '') {
       return NextResponse.json({ message: "Failed to remove token", success: false });
