@@ -32,8 +32,14 @@ const Sidebar = () => {
 
     const handleLogout = async () => {
         try {
-            const res = await fetch("/api/logout");
-            console.log(res)
+
+            const res = await fetch("/api/logout", {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+    
             if (res.status === 200) {
                 localStorage.setItem('logout', Date.now());
                 router.replace('/');

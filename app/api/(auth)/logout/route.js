@@ -1,7 +1,7 @@
 import dbConnect from "@/lib/dbConnect";
 import { NextResponse } from "next/server";
 
-export async function GET(req, res) {
+export async function GET() {
     await dbConnect()
   try {
     const response = NextResponse.json({
@@ -15,7 +15,9 @@ export async function GET(req, res) {
       path: "/",
     });
 
-    console.log("Token Removed:", response.cookies.get("token"));
+    console.log(response.cookies.get("token"))
+
+    if(response.cookies.get("token").value !== '') return NextResponse.json({message:"Failed to remove token",success:false}) 
 
     return response;
     
