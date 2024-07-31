@@ -1,6 +1,7 @@
 import dbConnect from "@/lib/dbConnect";
 import { getDataFromToken } from "@/lib/getDataFromToken";
 import User from "@/models/user.model";
+import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
 
@@ -15,13 +16,13 @@ export async function GET(req,res){
         if (!user) {
             const response = NextResponse.json({ error: "User not found" }, { status: 404 })
             
-            response.cookies.delete("token", "", {
-                httpOnly: true,
-                secure: true,
-                expires: new Date(0),
-                path: "/",              
-              });
+            cookies().set('token','',{
+                expires:new Date(0),
+                httpOnly:true,
+                path:'/'
+              })
               
+
               return response
         }
 
@@ -34,14 +35,12 @@ export async function GET(req,res){
     } catch (error) {
         const response = NextResponse.json({ error: error.message }, { status: 401 })
         
-        response.cookies.delete("token", "", {
-            httpOnly: true,
-            secure: true,
-            expires: new Date(0),
-            path: "/",              
+        cookies().set('token','',{
+            expires:new Date(0),
+            httpOnly:true,
+            path:'/'
+          })
           
-          });
-
           return response
       
     }

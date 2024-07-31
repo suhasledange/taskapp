@@ -3,6 +3,7 @@ import dbConnect from "@/lib/dbConnect";
 import User from "@/models/user.model";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import { cookies } from "next/headers";
 
 export async function POST(request) {
   await dbConnect();
@@ -43,12 +44,11 @@ export async function POST(request) {
       success: true,
     });
 
-    response.cookies.set("token", token, {
-      httpOnly: true,
-      secure: true,
-      expires: tokenExpiryDate,
-      path: "/",
-    });
+     cookies().set('token',token,{
+        expires:tokenExpiryDate,
+        httpOnly:true,
+        path:'/'
+      })
 
     return response;
 

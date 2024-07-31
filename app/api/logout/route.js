@@ -1,4 +1,5 @@
 import dbConnect from "@/lib/dbConnect";
+import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
 export async function GET() {
@@ -9,14 +10,14 @@ export async function GET() {
       success: true,
     });
 
-    response.cookies.delete("token", {
-      httpOnly: true,
-      secure: true,
-      path: "/",              
-    });
+    cookies().set('token','',{
+      expires:new Date(0),
+      httpOnly:true,
+      path:'/'
+    })
 
     return response;
-    
+
   } catch (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
