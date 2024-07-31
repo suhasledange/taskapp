@@ -2,22 +2,25 @@ import dbConnect from "@/lib/dbConnect";
 import { NextResponse } from "next/server";
 
 export async function GET() {
-    await dbConnect()
+  await dbConnect();
   try {
     const response = NextResponse.json({
       message: "Logout successful",
       success: true,
     });
+
     response.cookies.set("token", "", {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       expires: new Date(0),
-      path: "/",
+      path: "/",              
+      domain: "todonext-app.vercel.app" 
     });
 
-    console.log("token is : ", response.cookies.get("token"))
-
-    if(response.cookies.get("token").value !== '') return NextResponse.json({message:"Failed to remove token",success:false}) 
+    const removedCookie = response.cookies.get("token");
+    if (removedCookie && removedCookie.value !== '') {
+      return NextResponse.json({ message: "Failed to remove token", success: false });
+    }
 
     return response;
     

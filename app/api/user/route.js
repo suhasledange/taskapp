@@ -14,8 +14,18 @@ export async function GET(req,res){
 
         if (!user) {
             const response = NextResponse.json({ error: "User not found" }, { status: 404 });
-            response.cookies.set("token", "", { httpOnly: true, expires: new Date(0) });
+
+            response.cookies.set("token", "", {
+                httpOnly: true,
+                secure: process.env.NODE_ENV === "production",
+                expires: new Date(0),
+                path: "/",              
+                domain: "todonext-app.vercel.app" 
+              });
+          
+           
             return response;
+
         }
 
         return NextResponse.json({
@@ -26,7 +36,14 @@ export async function GET(req,res){
 
     } catch (error) {
         const response = NextResponse.json({ error: error.message }, { status: 401 });
-        response.cookies.set("token", "", { httpOnly: true, expires: new Date(0) });
+        response.cookies.set("token", "", {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            expires: new Date(0),
+            path: "/",              
+            domain: "todonext-app.vercel.app" 
+          });
+      
         return response;
     }
     
