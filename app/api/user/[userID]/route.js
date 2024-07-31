@@ -12,7 +12,10 @@ export async function GET(req,params){
 
     try {
        
-        const todos = await Todo.find({ owner: id }).select("-owner");
+        const todos = await Todo.find({ owner: id })
+        .select("-owner")
+        .sort({ updatedAt: -1 });
+        
         return NextResponse.json({
             status: 200,
             data: todos
