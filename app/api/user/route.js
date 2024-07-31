@@ -13,19 +13,16 @@ export async function GET(req,res){
         const user = await User.findOne({email}).select("-password");
 
         if (!user) {
-            const response = NextResponse.json({ error: "User not found" }, { status: 404 });
-
-            response.cookies.set("token", "", {
+            const response = NextResponse.json({ error: "User not found" }, { status: 404 })
+            
+            response.cookies.delete("token", "", {
                 httpOnly: true,
                 secure: true,
                 expires: new Date(0),
                 path: "/",              
-                domain: "https://todonext-app.vercel.app" 
               });
-          
-           
-            return response;
-
+              
+              return response
         }
 
         return NextResponse.json({
@@ -35,16 +32,18 @@ export async function GET(req,res){
         })
 
     } catch (error) {
-        const response = NextResponse.json({ error: error.message }, { status: 401 });
-        response.cookies.set("token", "", {
+        const response = NextResponse.json({ error: error.message }, { status: 401 })
+        
+        response.cookies.delete("token", "", {
             httpOnly: true,
             secure: true,
             expires: new Date(0),
             path: "/",              
-            domain: "https://todonext-app.vercel.app" 
+          
           });
+
+          return response
       
-        return response;
     }
     
 }

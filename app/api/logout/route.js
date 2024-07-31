@@ -7,19 +7,14 @@ export async function GET() {
     const response = NextResponse.json({
       message: "Logout successful",
       success: true,
-    });
-
-    response.cookies.set("token", "", {
+    })
+    
+    response.cookies.delete("token", "", {
       httpOnly: true,
       secure: true,
       expires: new Date(0),
       path: "/",              
-      domain: "https://todonext-app.vercel.app" 
     });
-    const removedCookie = response.cookies.get("token");
-    if (removedCookie && removedCookie.value !== '') {
-      return NextResponse.json({ message: "Failed to remove token", success: false });
-    }
 
     return response;
     

@@ -35,20 +35,23 @@ export async function POST(request) {
       expiresIn: process.env.ACCESS_TOKEN_EXPIRY,
     });
 
+    const tokenExpiryTimestamp = Date.now() + (24 * 60 * 60 * 1000);
+    const tokenExpiryDate = new Date(tokenExpiryTimestamp);
+
     const response = NextResponse.json({
       message: "Login successful",
       success: true,
-    });
+    })
 
     response.cookies.set("token", token, {
       httpOnly: true,
       secure: true,
-      maxAge: 24 * 60 * 60 * 1000,
+      expires: tokenExpiryDate,
       path: "/",
     });
 
+    return response
 
-    return response;
   } catch (error) {
     return NextResponse.json({ error: error }, { status: 500 });
   }
