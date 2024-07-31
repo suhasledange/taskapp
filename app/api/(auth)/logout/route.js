@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 
 
-
 export async function GET(req,res){
 
     try {
@@ -11,7 +10,7 @@ export async function GET(req,res){
                 success: true,
             }
         )
-        response.cookies.set("token", "",
+       await response.cookies.set("token", "",
         { httpOnly: true, expires: new Date(0)
         })
 

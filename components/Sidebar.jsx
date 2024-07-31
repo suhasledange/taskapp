@@ -34,13 +34,14 @@ const Sidebar = () => {
 
         try {
             const res = await axios.get("/api/logout")
+            if(res){
                 router.replace('/')
                 setTodoData([])
                 setUserData([])
+            }
         } catch (error) {
             console.log("failed to logout",error)
         }
-
     }
  
   return (
