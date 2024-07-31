@@ -35,7 +35,7 @@ const Sidebar = () => {
             const res = await axios.get("/api/logout");
             if (res.status === 200) {
                 localStorage.setItem('logout', Date.now());
-                await router.replace('/');
+                 router.replace('/');
                 setTodoData([]);
                 setUserData([]);
             } else {
