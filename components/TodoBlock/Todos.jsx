@@ -83,10 +83,7 @@ const Todos = ({ todos }) => {
             }}
             
             />
-          ) : todo.length ||
-            inProgress.length ||
-            underReview.length ||
-            finished.length ? (
+          ) :  (
             <div className="flex w-full items-center px-3 py-2 gap-5 scroll-none overflow-x-auto overflow-y-hidden h-full">
               <Coloumn todo={todo} title="To Do" id="Todo" status="Todo" />
               <Coloumn
@@ -107,10 +104,6 @@ const Todos = ({ todos }) => {
                 id="Finished"
                 status="Finished"
               />
-            </div>
-          ) : (
-            <div className="py-2 px-3">
-              <h1>No Data found</h1>
             </div>
           )}
         </DragDropContext>
