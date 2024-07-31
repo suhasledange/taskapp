@@ -26,6 +26,7 @@ const Login = ({ setDialog }) => {
     if(res.status === 200){
       router.replace("/dashboard")
       setLoading(false)
+      localStorage.clear()
     } 
 
   } catch (error) {
