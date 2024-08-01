@@ -48,29 +48,29 @@ const Sidebar = () => {
     };
  
   return (
-    <div className="bg-white h-screen border flex flex-col justify-between overflow-hidden">
-        <div className='flex flex-col px-3 mt-4 w-full'>
-            
-        <div className='flex flex-col '>
+    <div className="lg:h-screen md:h-full h-full lg:py-0 md:py-3 py-3 flex flex-col justify-between overflow-hidden">
+        <div className='flex flex-col px-3 lg:mt-4 mt-0 md:mt-0 w-full'>
 
-            <div className='flex items-center gap-2 md:flex-row flex-col' >
-                    <div className=' w-10 h-10 cursor-pointer'>
-                        <Image alt="logouser" className='w-full object-contain h-full' src="/DefaultProfile.svg" width={500} height={500}/>
+        <div className='flex lg:flex-col md:flex-row flex-row md:justify-between justify-between lg:justify-start'>
+
+            <div className='flex items-center gap-3' >
+                    <div className=' w-10 h-10 cursor-pointer flex items-center justify-center'>
+                        <Image alt="logouser" className=' aspect-square' src="/DefaultProfile.svg" width={500} height={500}/>
                     </div>
-                    <h1 className='font-semibold tracking-wider text-md'>{userData?.fullname}</h1>
+                    <h1 className='font-semibold tracking-wider whitespace-nowrap text-md'>{userData?.fullname}</h1>
             </div>
 
-            <div className='mt-4 flex gap-4 md:gap-0 md:flex-row flex-col justify-between items-center'>
+            <div className='lg:mt-4 mt-0 md:mt-0 flex gap-4 justify-between items-center'>
                 <div className='flex items-center gap-4 text-lg text-gray-700 pl-1'>
                     <button className=''><GoBell/></button>
                     <button className='relative'><LuLoader/> <div className='absolute rounded-full w-3  h-3 bg-yellow-500 -top-1 -right-1'></div> </button>
                     <button className=''><MdKeyboardDoubleArrowRight/></button>
                 </div>
-                <button onClick={handleLogout} className='bg-gray-100 px-3 py-1 md:w-auto w-full active:scale-95 font-medium text-sm hover:bg-gray-200/60 duration-150 text-gray-600'>Logout</button>
+                <button onClick={handleLogout} className='bg-gray-100 px-3 py-1 md:w-auto w-full active:scale-95 font-medium lg:text-sm text-md text-md hover:bg-gray-200/60 duration-150 text-gray-600'>Logout</button>
             </div>
         </div>
 
-        <div className='flex flex-col w-full my-4'>
+        <div className='flex-col w-full my-4 lg:flex md:hidden hidden'>
             { 
             links.map(l => (  
                 <Link  href={l.link} className={`text-sm text-gray-700 font-normal ${pathname === l.link ? "bg-gray-100 ":"bg-transparent"} rounded-sm p-2 flex items-center gap-2 duration-200 `} key={l.id}> {l.logo} { l.text } </Link>
@@ -78,12 +78,13 @@ const Sidebar = () => {
             }
         
         </div>
-        <div>
-            <button onClick={()=>setFormDialog(true)} className='flex w-full items-center justify-center bg-purple-900 text-white font-normal text-md rounded-md p-2 px-6 gap-2'>Create new task <MdAddCircle/></button>
+
+        <div className='lg:block hidden'>
+            <button onClick={()=>setFormDialog(true)} className='flex w-full md:text-sm text-xs lg:text-md items-center justify-center bg-purple-900 text-white font-normal text-md rounded-md p-2 px-6 gap-2'>Create new task <MdAddCircle className='text-lg'/></button>
         </div>
       
         </div>
-            <div className='flex items-center justify-center w-full px-3 mb-8'>
+            <div className='lg:flex md:hidden hidden items-center justify-center w-full px-3 mb-8'>
                
                 <div className='flex cursor-pointer items-center gap-3 bg-gray-100 rounded-md w-full p-3'>
                 <IoMdDownload className='text-2xl'/>

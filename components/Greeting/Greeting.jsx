@@ -35,7 +35,7 @@ const Greeting = () => {
             <h1 className='text-2xl font-semibold'>{greeting}, {name}</h1>
             <button className='font-medium text-sm text-gray-700 flex items-center justify-center gap-1'>Help & feedback <FiHelpCircle/> </button>
         </div>
-        <div className='flex items-center justify-center gap-3 flex-wrap'>
+        <div className='flex items-center justify-center flex-grow gap-3 flex-wrap'>
             {
                 greetingData.map(value => (
                     <GreetingCard key={value.id} img={value.img} description={value.description} title={value.title}/>
