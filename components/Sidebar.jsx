@@ -15,11 +15,14 @@ import { MdAddCircle } from "react-icons/md";
 import { IoMdDownload } from "react-icons/io";
 import { useTodoContext } from '@/context/TodoProvider';
 import axios from 'axios';
+import { IoMenuSharp } from "react-icons/io5";
 const Sidebar = () => {
 
     const pathname = usePathname()
     const router = useRouter();
     const {setFormDialog,userData,setTodoData,setUserData} = useTodoContext()
+
+    const [smallMenu,setSmallMenu] = useState(false)
 
     const links = [
 
@@ -48,12 +51,18 @@ const Sidebar = () => {
     };
  
   return (
-    <div className="lg:h-screen md:h-full h-full lg:py-0 md:py-3 py-3 flex flex-col justify-between overflow-hidden">
+    <div className={`lg:h-screen md:h-full duration-200 ease-in-out transition-transform ${smallMenu ? "h-full":"h-[3.8rem]"}  lg:py-0 md:py-3 py-3 flex flex-col justify-between overflow-hidden`}>
+        
         <div className='flex lg:flex-col lg:px-3 lg:mt-4 mt-0 md:mt-0 w-full'>
 
         <div className='flex lg:flex-col md:flex-row flex-row justify-between w-full'>
 
             <div className='flex items-center gap-3' >
+            
+            <div onClick={()=>setSmallMenu(prev => !prev)} className='lg:hidden md:hidden block cursor-pointer'>
+                    <IoMenuSharp size={25}/>
+            </div>
+
                     <div className='w-8 h-8 cursor-pointer flex items-center justify-center'>
                         <Image alt="logouser" className='aspect-square object-contain' src="/DefaultProfile.svg" width={500} height={500}/>
                     </div>
@@ -79,6 +88,7 @@ const Sidebar = () => {
             </div>
         </div>
 
+
         <div className='flex-col w-full my-4 lg:flex md:hidden hidden'>
             { 
             links.map(l => (  
@@ -93,6 +103,15 @@ const Sidebar = () => {
         </div>
       
         </div>
+
+        <div className='flex-col w-full mt-4 mb-0 lg:hidden md:hidden block'>
+            { 
+            links.map(l => (  
+                <Link  href={l.link} className={`text-sm text-gray-700 font-normal ${pathname === l.link ? "bg-gray-100 ":"bg-transparent"} rounded-sm p-2 flex items-center gap-2 duration-200 `} key={l.id}> {l.logo} { l.text } </Link>
+            ))
+            }
+        </div>
+
             <div className='lg:flex md:hidden hidden items-center justify-center w-full px-3 mb-8'>
                
                 <div className='flex cursor-pointer items-center gap-3 bg-gray-100 rounded-md w-full p-3'>

@@ -27,7 +27,7 @@ const Dashboard = ({ children }) => {
         <Sidebar />
       </div>
 
-      <div className="w-full h-screen overflow-auto bg-gray-100 md:w-full lg:w-5/6">
+      <div className="w-full lg:h-screen md:h-full h-full bg-gray-100 md:w-full lg:w-5/6">
         {children}
       </div>
       <TodoForm />
