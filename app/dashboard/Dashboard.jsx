@@ -23,7 +23,7 @@ const Dashboard = ({ children }) => {
   return (
     <div className="flex lg:flex-row flex-col md:flex-col h-full overflow-hidden relative">
       
-      <div className="transform z-40 bg-white px-2 border lg:h-screen shadow-md lg:w-1/6 left-100 top-0">
+      <div className="transform z-40 bg-white px-2 border lg:h-screen shadow-sm lg:w-1/6 left-100 top-0">
         <Sidebar />
       </div>
 

@@ -49,19 +49,28 @@ const Sidebar = () => {
  
   return (
     <div className="lg:h-screen md:h-full h-full lg:py-0 md:py-3 py-3 flex flex-col justify-between overflow-hidden">
-        <div className='flex flex-col px-3 lg:mt-4 mt-0 md:mt-0 w-full'>
+        <div className='flex lg:flex-col lg:px-3 lg:mt-4 mt-0 md:mt-0 w-full'>
 
-        <div className='flex lg:flex-col md:flex-row flex-row md:justify-between justify-between lg:justify-start'>
+        <div className='flex lg:flex-col md:flex-row flex-row justify-between w-full'>
 
             <div className='flex items-center gap-3' >
-                    <div className=' w-10 h-10 cursor-pointer flex items-center justify-center'>
-                        <Image alt="logouser" className=' aspect-square' src="/DefaultProfile.svg" width={500} height={500}/>
+                    <div className='w-8 h-8 cursor-pointer flex items-center justify-center'>
+                        <Image alt="logouser" className='aspect-square object-contain' src="/DefaultProfile.svg" width={500} height={500}/>
                     </div>
-                    <h1 className='font-semibold tracking-wider whitespace-nowrap text-md'>{userData?.fullname}</h1>
+                    <h1 className='font-semibold tracking-wider text-md'>{userData?.fullname}</h1>
             </div>
 
-            <div className='lg:mt-4 mt-0 md:mt-0 flex gap-4 justify-between items-center'>
-                <div className='flex items-center gap-4 text-lg text-gray-700 pl-1'>
+            <div className='lg:hidden md:flex hidden'>
+            { 
+            links.map(l => (  
+                <Link  href={l.link} className={`text-sm hover:bg-gray-100/70 duration-200 text-gray-700 font-normal ${pathname === l.link ? "bg-gray-100 ":"bg-transparent"} rounded-sm px-2 md:mx-1 mx-0 flex items-center gap-2 duration-200 `} key={l.id}> {l.logo} { l.text } </Link>
+            ))
+            }
+        
+        </div>
+
+            <div className='lg:mt-4 mt-0 md:mt-0 flex lg:gap-4 gap-4 md:gap-2 justify-between items-center'>
+                <div className='flex items-center lg:gap-4 md:gap-3 gap-4 text-lg text-gray-700 pl-1'>
                     <button className=''><GoBell/></button>
                     <button className='relative'><LuLoader/> <div className='absolute rounded-full w-3  h-3 bg-yellow-500 -top-1 -right-1'></div> </button>
                     <button className=''><MdKeyboardDoubleArrowRight/></button>
