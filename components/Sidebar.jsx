@@ -51,7 +51,7 @@ const Sidebar = () => {
     };
  
   return (
-    <div className={`lg:h-screen md:h-full duration-200 ease-in-out transition-transform ${smallMenu ? "h-full":"h-[3.8rem]"}  lg:py-0 md:py-3 py-3 flex flex-col justify-between overflow-hidden`}>
+    <div className={`lg:h-screen md:h-full ${smallMenu ? "h-full":"h-[3.8rem]"}  lg:py-0 md:py-3 py-3 flex flex-col justify-between overflow-hidden`}>
         
         <div className='flex lg:flex-col lg:px-3 lg:mt-4 mt-0 md:mt-0 w-full'>
 
@@ -95,7 +95,6 @@ const Sidebar = () => {
                 <Link  href={l.link} className={`text-sm text-gray-700 font-normal ${pathname === l.link ? "bg-gray-100 ":"bg-transparent"} rounded-sm p-2 flex items-center gap-2 duration-200 `} key={l.id}> {l.logo} { l.text } </Link>
             ))
             }
-        
         </div>
 
         <div className='lg:block hidden'>
