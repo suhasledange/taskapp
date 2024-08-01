@@ -105,7 +105,7 @@ const TodoForm = () => {
 
   return (
     isVisible && (
-      <div className={`fixed inset-0 z-30 overflow-y-auto overflow-x-hidden`}>
+      <div className={`fixed inset-0 z-50 overflow-y-auto overflow-x-hidden`}>
         <div
           className={`fixed inset-0 w-full ${
             isAnimating ? "opacity-60" : "opacity-0"
