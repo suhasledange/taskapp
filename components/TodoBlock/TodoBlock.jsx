@@ -75,14 +75,14 @@ const TodoBlock = () => {
                     />
                     <CiSearch className='text-lg' />
                 </div>
-                <div className='text-sm flex flex-wrap relative items-center text-gray-700 gap-3'>
+                <div className='text-sm flex flex-wrap lg:w-auto w-full lg:justify-normal justify-evenly relative items-center text-gray-700 gap-3'>
                     {
                         ButtonOperations.map(btn => (
                             <button
                                 key={btn.id}
                                 onClick={() => handleBtn(btn.value)}
                                 ref={btn.value === 'filter' ? filterButtonRef : null}
-                                className='flex mr-8 items-center gap-3'
+                                className='flex lg:mr-8 mr-3 items-center lg:gap-3 gap-1'
                             >
                                 {btn.title} {btn.icn}
                             </button>
